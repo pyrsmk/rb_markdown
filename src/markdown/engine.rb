@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative "./bold_tag"
 require_relative "./code_tag"
 require_relative "./italic_tag"

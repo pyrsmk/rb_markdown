@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name            = "rb_markdown"
-  s.version         = "0.1.0"
+  s.version         = "0.1.1"
   s.summary         = "A tiny markdown engine"
   s.authors         = ["Aurélien Delogu"]
   s.email           = "aurelien.delogu@gmail.com"

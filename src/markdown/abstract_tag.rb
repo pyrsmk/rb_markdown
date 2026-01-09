@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Markdown
   module AbstractTag
     def initialize(value)
