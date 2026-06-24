@@ -12,10 +12,9 @@ RSpec.describe Markdown::LineProcessor do
     end
 
     context "with inline markdown inside a heading" do
-      it "applies both heading and inline formatting" do
+      it "preserves inline markers without interpreting them" do
         result = subject.process("# Hello **world**")
-        expect(result).to include("\033[1m")
-        expect(result).to include("world")
+        expect(result).to include("Hello **world**")
       end
     end
 

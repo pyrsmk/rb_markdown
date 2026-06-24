@@ -34,9 +34,9 @@ RSpec.describe Markdown::Engine do
         expect(result).to include("Subtitle")
       end
 
-      it "applies inline formatting inside headings" do
+      it "preserves inline markers inside headings" do
         result = described_class.new("# Hello **world**").to_ansi
-        expect(result).to include("world")
+        expect(result).to include("Hello **world**")
         expect(result).to include("\033[4m")
       end
     end

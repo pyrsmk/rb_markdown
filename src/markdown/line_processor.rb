@@ -36,7 +36,8 @@ module Markdown
         tag = @line_tags.find { |t| t.match?(line) }
 
         processed = if tag
-          @inline_processor.process(tag.process(line))
+          tagged = tag.process(line)
+          @heading_tags.include?(tag) ? tagged : @inline_processor.process(tagged)
         else
           @inline_processor.process(line)
         end
