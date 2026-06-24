@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+
+require_relative "./abstract_line_tag"
+
+module Markdown
+  class UnorderedListTag
+    include AbstractLineTag
+
+    protected
+
+    def prefix_pattern
+      /^[*\-]\s+/
+    end
+
+    def convert(string)
+      "  \u2022 #{string}"
+    end
+  end
+end
