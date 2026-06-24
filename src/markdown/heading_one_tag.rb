@@ -13,7 +13,7 @@ module Markdown
     end
 
     def convert(string)
-      string.bold.underline
+      string.bold.underline.yellow
     end
   end
 end

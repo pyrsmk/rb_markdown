@@ -21,6 +21,7 @@ RSpec.describe Markdown::Engine do
     context "with headings" do
       it "applies h1 formatting" do
         result = described_class.new("# Title").to_ansi
+        expect(result).to include("\033[33m")
         expect(result).to include("\033[4m")
         expect(result).to include("\033[1m")
         expect(result).to include("Title")
@@ -28,6 +29,7 @@ RSpec.describe Markdown::Engine do
 
       it "applies h2 formatting" do
         result = described_class.new("## Subtitle").to_ansi
+        expect(result).to include("\033[33m")
         expect(result).to include("\033[1m")
         expect(result).to include("Subtitle")
       end

@@ -10,25 +10,46 @@ module Markdown
   class LineProcessor
     def initialize(inline_processor)
       @inline_processor = inline_processor
-      @line_tags = [
+      @heading_tags = [
         HeadingThreeTag.new,
         HeadingTwoTag.new,
         HeadingOneTag.new,
+      ]
+      @line_tags = @heading_tags + [
         UnorderedListTag.new,
         OrderedListTag.new,
       ]
     end
 
     def process(string)
-      string.each_line(chomp: true).map do |line|
+      lines = string.each_line(chomp: true).to_a
+      result = []
+      skip_next_blank = false
+
+      lines.each do |line|
+        if skip_next_blank && line.strip.empty?
+          skip_next_blank = false
+          next
+        end
+        skip_next_blank = false
+
         tag = @line_tags.find { |t| t.match?(line) }
 
-        if tag
+        processed = if tag
           @inline_processor.process(tag.process(line))
         else
           @inline_processor.process(line)
         end
-      end.join("\n")
+
+        result << processed
+
+        if tag && @heading_tags.include?(tag)
+          result << ""
+          skip_next_blank = true
+        end
+      end
+
+      result.join("\n")
     end
   end
 end

@@ -21,7 +21,7 @@ RSpec.describe Markdown::HeadingOneTag do
   describe "#process" do
     it "returns bold underlined content" do
       result = subject.process("# #{content}")
-      expect(result).to eq "\033[4m\033[1m#{content}\033[0m\033[0m"
+      expect(result).to eq "\033[33m\033[4m\033[1m#{content}\033[0m\033[0m\033[0m"
     end
   end
 end

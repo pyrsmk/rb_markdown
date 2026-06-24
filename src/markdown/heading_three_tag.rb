@@ -13,7 +13,7 @@ module Markdown
     end
 
     def convert(string)
-      string.bold.italic
+      string.italic.yellow
     end
   end
 end

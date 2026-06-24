@@ -33,10 +33,10 @@ RSpec.describe Markdown::LineProcessor do
         result = subject.process(input)
         lines = result.split("\n")
 
-        expect(lines.length).to eq 3
         expect(lines[0]).to include("\033[4m")
-        expect(lines[1]).to eq "some text"
-        expect(lines[2]).to include("\033[1m")
+        expect(lines[1]).to eq ""
+        expect(lines[2]).to eq "some text"
+        expect(lines[3]).to include("\033[1m")
       end
     end
   end
