@@ -9,7 +9,7 @@ module Markdown
       lexer ||= Rouge::Lexers::PlainText.new
 
       formatter = Rouge::Formatters::Terminal256.new(Rouge::Themes::Monokai.new)
-      formatter.format(lexer.lex(content)).gsub("\033[4m", "")
+      formatter.format(lexer.lex(content)).gsub(/\033\[[0-9;]*m/) { |seq| seq.gsub(/;0?4(?=[;m])/, "") }
     end
   end
 end
