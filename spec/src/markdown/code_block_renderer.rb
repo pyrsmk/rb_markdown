@@ -7,6 +7,11 @@ RSpec.describe Markdown::CodeBlockRenderer do
         result = subject.render("puts 'hello'", "rb")
         expect(result).to include("\033[")
       end
+
+      it "uses only 16-color ANSI codes" do
+        result = subject.render("def hello; end", "rb")
+        expect(result).not_to match(/\e\[38;5;/)
+      end
     end
 
     context "with an unknown language" do
